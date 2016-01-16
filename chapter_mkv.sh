@@ -4,6 +4,6 @@ set -e
 
 fullfilename=$(basename "$1")
 
-mkvextract chapters "$1" > "${fullfilename%.*}.xml"
+mkvextract chapters "$1" --redirect-output "${fullfilename%.*}.xml"
 
 echo "Fini !"
