@@ -1,5 +1,5 @@
 #!/bin/sh
-# extract mkv
+# extract chapter from mkv
 set -e
 
 fullfilename=$(basename "$1")
