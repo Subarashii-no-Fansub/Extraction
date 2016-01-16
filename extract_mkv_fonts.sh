@@ -1,8 +1,14 @@
-#!/bin/bash
-#extracts all fonts from the specified mkvs
-for i in $*; do
-	ids=`mkvmerge -i "$i"  | grep -oP '(?<=Attachment ID )[0-9]+'`
-	for id in $ids; do 
-		mkvextract attachments "$i" $id
-	done
-done
+#!/bin/sh
+# extracts all fonts from the specified mkvs
+set -e
+
+mkvmerge -i "$1"
+
+fullfilename=$(basename "$1")
+mkdir -p "${fullfilename%.*}"
+cd "${fullfilename%.*}"
+
+attach=$(mkvmerge -i "$1" | grep Attachment | awk -F" " '{print $3}' | sed 's/://');
+mkvextract attachments "$1" $attach;
+
+echo "Fini !"
