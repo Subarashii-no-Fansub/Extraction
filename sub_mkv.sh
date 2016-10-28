@@ -1,15 +1,13 @@
 #!/bin/sh
-# paramètre 1 : video $1
-set -e
+# parameter 1: video $1
 
-#chmod 644 "$1"
+set -e
 
 mkvmerge -i "$1"
 
 fullfilename=$(basename "$1")
 
-read -p "Numéro des sous-titres : " var_idss
+read -p "Subtitles Track ID: " var_idss
 mkvextract tracks "$1" $var_idss:"${fullfilename%.*}.ass"
-#chmod 644 "${fullfilename%.*}.ass"
 
-echo "Fini !"
+echo "End!"
