@@ -7,7 +7,7 @@ mkvmerge -i "$1"
 
 fullfilename=$(basename "$1")
 
-read -p "Subtitles Track ID: " var_idss
+read -p "Subtitle Track ID: " var_idss
 mkvextract tracks "$1" $var_idss:"${fullfilename%.*}.ass"
 
 echo "End!"
